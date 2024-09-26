@@ -4,8 +4,8 @@ const c = canvas.getContext('2d')
 
 
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 const collisionsMap = []
 for (let i = 0; i < collisions.length; i += 70){
@@ -18,7 +18,7 @@ for (let i = 0; i < collisions.length; i += 70){
 const boundaries = []
 
 const offset = {
-	x: -1075,
+	x: -1035,
 	y: -600
 }
 
@@ -233,6 +233,17 @@ animate()
 
 let lastKey = ''
 
+
+window.addEventListener('resize', () => {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	console.log("Resized")
+
+	background.draw()
+	player.draw()
+	foreground.draw()
+})
 
 window.addEventListener('keydown', (e) => {
 	switch (e.key) {
